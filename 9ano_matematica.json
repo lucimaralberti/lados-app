@@ -1,0 +1,25 @@
+{
+  "ano": "9ano",
+  "disciplina": "matematica",
+  "descritores": {
+    "D1": "Localização no espaço",
+    "D2": "Reconhecer figuras bidimensionais e tridimensionais",
+    "D3": "Propriedades de triângulos",
+    "D4": "Propriedades de quadriláteros",
+    "D5": "Ampliação e redução de figuras",
+    "D6": "Reconhecer ângulos",
+    "D7": "Semelhança de figuras",
+    "D8": "Soma dos ângulos internos",
+    "D9": "Calcular perímetro e área",
+    "D10": "Calcular volume",
+    "D11": "Converter unidades de medida",
+    "D12": "Operar com números inteiros",
+    "D13": "Operar com frações e decimais",
+    "D14": "Resolver porcentagem",
+    "D15": "Resolver equações",
+    "D16": "Resolver problemas de proporcionalidade",
+    "D17": "Interpretar gráficos",
+    "D18": "Calcular probabilidade",
+    "D19": "Analisar dados estatísticos"
+  }
+}

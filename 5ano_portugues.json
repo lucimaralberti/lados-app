@@ -1,0 +1,21 @@
+{
+  "ano": "5ano",
+  "disciplina": "portugues",
+  "descritores": {
+    "D1": "Localizar informação explícita",
+    "D2": "Estabelecer relações entre partes do texto",
+    "D3": "Inferir sentido de palavra ou expressão",
+    "D4": "Inferir informação implícita",
+    "D5": "Interpretar texto com apoio de material gráfico",
+    "D6": "Identificar tema",
+    "D7": "Identificar elementos de coesão",
+    "D8": "Estabelecer relações lógico-discursivas",
+    "D9": "Identificar finalidade do texto",
+    "D10": "Identificar variações linguísticas",
+    "D11": "Distinguir fato de opinião",
+    "D12": "Identificar relação de causa e consequência",
+    "D13": "Identificar efeitos de sentido",
+    "D14": "Reconhecer efeitos expressivos",
+    "D15": "Comparar textos sobre o mesmo tema"
+  }
+}

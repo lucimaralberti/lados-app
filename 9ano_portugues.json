@@ -1,0 +1,23 @@
+{
+  "ano": "9ano",
+  "disciplina": "portugues",
+  "descritores": {
+    "D1": "Localizar informação explícita",
+    "D3": "Inferir sentido de palavra",
+    "D4": "Inferir informação implícita",
+    "D5": "Interpretar textos com apoio gráfico",
+    "D6": "Identificar tema",
+    "D7": "Identificar tese",
+    "D8": "Relacionar tese e argumentos",
+    "D9": "Diferenciar ideias principais e secundárias",
+    "D11": "Identificar relação de causa e consequência",
+    "D12": "Identificar finalidade do texto",
+    "D13": "Identificar marcas do locutor",
+    "D14": "Distinguir fato de opinião",
+    "D15": "Estabelecer relações lógico-discursivas",
+    "D16": "Identificar ironia ou humor",
+    "D17": "Identificar efeito da pontuação",
+    "D18": "Identificar efeito de palavras",
+    "D19": "Reconhecer efeitos linguísticos"
+  }
+}

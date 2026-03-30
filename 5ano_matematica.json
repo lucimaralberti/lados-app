@@ -1,0 +1,18 @@
+{
+  "ano": "5ano",
+  "disciplina": "matematica",
+  "descritores": {
+    "D1": "Localizar objetos em mapas",
+    "D2": "Reconhecer poliedros e corpos redondos",
+    "D3": "Identificar características de figuras planas",
+    "D4": "Identificar quadriláteros",
+    "D5": "Resolver problemas com medidas",
+    "D6": "Calcular perímetro",
+    "D7": "Calcular área",
+    "D8": "Compreender sistema de numeração decimal",
+    "D9": "Resolver operações com números naturais",
+    "D10": "Resolver problemas com operações",
+    "D11": "Interpretar tabelas e gráficos",
+    "D12": "Resolver problemas com dados"
+  }
+}
