@@ -147,7 +147,7 @@ if st.button("🚀 Gerar Questões"):
             exemplos=exemplos
         )
 
-        questoes = gerar_questoes_lote(model, prompt, quantidade)
+     questoes = gerar_questoes_lote(model, prompt, quantidade)
 
         if st.button("🚀 Gerar Questões"):
         with st.spinner("O Gemini está analisando os padrões e gerando os itens..."):
