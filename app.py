@@ -138,12 +138,13 @@ quantidade = st.slider("Quantidade de questões", 1, 10, 5)
 if st.button("🚀 Gerar Questões"):
         with st.spinner("O Gemini está analisando os padrões e gerando os itens..."):
             try:
-                # O segredo é que todas essas linhas abaixo devem estar na mesma coluna
-                # Garante que 'exemplos' seja uma lista, evitando o erro de 'join'
-                lista_exemplos = exemplos if isinstance(exemplos, list) else []
+                # 1. Garante que 'exemplos' seja uma lista para não dar erro de 'join'
+                lista_viva_exemplos = exemplos if isinstance(exemplos, list) else []
                 
-                # Agora passamos a lista garantida para a função
-                prompt = montar_prompt(escolha, descritor, habilidade, lista_exemplos, quantidade)
+                # 2. Monta o prompt com todos os ingredientes certos
+                prompt = montar_prompt(escolha, descritor, habilidade, lista_viva_exemplos, quantidade)
+                
+                # 3. Gera as questões
                 questoes = gerar_questoes_lote(model, prompt, quantidade)
                 
                 if questoes:
@@ -152,11 +153,12 @@ if st.button("🚀 Gerar Questões"):
                         with st.expander(f"Questão {i}", expanded=True):
                             st.write(q)
                     
-                    docx_bytes = gerar_docx_lote(questoes, descritor_selecionado, ano_disciplina)
+                    # 4. Prepara o arquivo para baixar
+                    docx_bytes = gerar_docx_lote(questoes, descritor, escolha)
                     st.download_button(
                         label="📥 Baixar Simulado em Word",
                         data=docx_bytes,
-                        file_name=f"LADOS_{descritor_selecionado}.docx",
+                        file_name=f"LADOS_{descritor}.docx",
                         mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                     )
             except Exception as e:
