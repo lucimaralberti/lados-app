@@ -145,7 +145,7 @@ if st.button("🚀 Gerar Questões"):
                 lista_limpa = []
 
             # Criar modelo
-            model = genai.GenerativeModel("gemini-1.5-flash")
+            model = genai.GenerativeModel("gemini-1.5-flash-latest")
 
             # Prompt correto
             prompt = montar_prompt(
