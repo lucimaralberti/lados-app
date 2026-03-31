@@ -136,40 +136,19 @@ else:
 quantidade = st.slider("Quantidade de questões", 1, 10, 5)
 
 if st.button("🚀 Gerar Questões"):
-    with st.spinner("Gerando questões..."):
-       model = genai.GenerativeModel('gemini-1.5-flash')
-
-    prompt = montar_prompt(
-            ano=escolha,
-            disciplina="",
-            descritor=descritor,
-            habilidade=habilidade,
-            exemplos=exemplos
-        )
-
-     questoes = gerar_questoes_lote(model, prompt, quantidade)
-
-        if st.button("🚀 Gerar Questões"):
         with st.spinner("O Gemini está analisando os padrões e gerando os itens..."):
             try:
-                # 1. Monta o prompt
+                # O segredo é que todas essas linhas abaixo devem estar na mesma coluna
                 prompt = montar_prompt(ano_disciplina, descritor_selecionado, quantidade)
-                
-                # 2. Chama a função de geração (Aqui era onde estava o erro de espaço)
                 questoes = gerar_questoes_lote(model, prompt, quantidade)
                 
                 if questoes:
                     st.success(f"{len(questoes)} questões geradas com sucesso!")
-                    
-                    #Exibe as questões na tela
                     for i, q in enumerate(questoes, 1):
                         with st.expander(f"Questão {i}", expanded=True):
                             st.write(q)
                     
-                    # 3. Prepara o download em Word
-                    # (Certifique-se que a função gerar_docx_lote existe no seu código)
                     docx_bytes = gerar_docx_lote(questoes, descritor_selecionado, ano_disciplina)
-                    
                     st.download_button(
                         label="📥 Baixar Simulado em Word",
                         data=docx_bytes,
