@@ -143,7 +143,7 @@ if st.button("🚀 Gerar Questões"):
                 lista_exemplos = exemplos if isinstance(exemplos, list) else []
                 
                 # Agora passamos a lista garantida para a função
-                prompt = montar_prompt(escolha, descritor, habilidade, lista_examples, quantidade)
+                prompt = montar_prompt(escolha, descritor, habilidade, lista_exemplos, quantidade)
                 questoes = gerar_questoes_lote(model, prompt, quantidade)
                 
                 if questoes:
