@@ -139,7 +139,7 @@ if st.button("🚀 Gerar Questões"):
         with st.spinner("O Gemini está analisando os padrões e gerando os itens..."):
             try:
                 # O segredo é que todas essas linhas abaixo devem estar na mesma coluna
-                prompt = montar_prompt(escolha, descritor, quantidade)
+                prompt = montar_prompt(escolha, descritor, habilidade, exemplos, quantidade)
                 questoes = gerar_questoes_lote(model, prompt, quantidade)
                 
                 if questoes:
