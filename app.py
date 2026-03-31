@@ -149,18 +149,32 @@ if st.button("🚀 Gerar Questões"):
 
         questoes = gerar_questoes_lote(model, prompt, quantidade)
 
-        if questoes:
-            st.success(f"{len(questoes)} questões geradas com sucesso!")
-
-            for i, q in enumerate(questoes, 1):
-                st.markdown(f"### Questão {i}")
-                st.write(q)
-
-            docx = gerar_docx(questoes)
-            st.download_button(
-                "📥 Baixar todas em DOCX",
-                docx,
-                file_name="simulado_lados.docx"
-            )
-        else:
-            st.error("Nenhuma questão válida foi gerada. Tente novamente.")
+        if st.button("🚀 Gerar Questões"):
+        with st.spinner("O Gemini está analisando os padrões e gerando os itens..."):
+            try:
+                # 1. Monta o prompt
+                prompt = montar_prompt(ano_disciplina, descritor_selecionado, quantidade)
+                
+                # 2. Chama a função de geração (Aqui era onde estava o erro de espaço)
+                questoes = gerar_questoes_lote(model, prompt, quantidade)
+                
+                if questoes:
+                    st.success(f"{len(questoes)} questões geradas com sucesso!")
+                    
+                    #Exibe as questões na tela
+                    for i, q in enumerate(questoes, 1):
+                        with st.expander(f"Questão {i}", expanded=True):
+                            st.write(q)
+                    
+                    # 3. Prepara o download em Word
+                    # (Certifique-se que a função gerar_docx_lote existe no seu código)
+                    docx_bytes = gerar_docx_lote(questoes, descritor_selecionado, ano_disciplina)
+                    
+                    st.download_button(
+                        label="📥 Baixar Simulado em Word",
+                        data=docx_bytes,
+                        file_name=f"LADOS_{descritor_selecionado}.docx",
+                        mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    )
+            except Exception as e:
+                st.error(f"Ocorreu um erro na geração: {e}")
