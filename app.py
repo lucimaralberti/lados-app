@@ -139,7 +139,7 @@ if st.button("🚀 Gerar Questões"):
     with st.spinner("Gerando questões..."):
        model = genai.GenerativeModel('gemini-1.5-flash')
 
-        prompt = montar_prompt(
+    prompt = montar_prompt(
             ano=escolha,
             disciplina="",
             descritor=descritor,
