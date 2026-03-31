@@ -136,34 +136,47 @@ else:
 quantidade = st.slider("Quantidade de questões", 1, 10, 5)
 
 if st.button("🚀 Gerar Questões"):
-        with st.spinner("O Gemini está analisando os padrões e gerando os itens..."):
-            try:
-                # 1. Tratamento rigoroso da lista de exemplos para evitar o erro 'join'
-                if isinstance(exemplos, list):
-                    # Garante que todos os itens da lista sejam strings
-                    lista_limpa = [str(ex) for ex in exemplos if ex]
-                else:
-                    lista_limpa = []
-                
-                # 2. Montagem do prompt com os nomes de variáveis do seu código
-                prompt = montar_prompt(escolha, descritor, habilidade, lista_limpa, quantidade)
-                
-                # 3. Chamada do modelo
-                questoes = gerar_questoes_lote(model, prompt, quantidade)
-                
-                if questoes:
-                    st.success(f"{len(questoes)} questões geradas com sucesso!")
-                    for i, q in enumerate(questoes, 1):
-                        with st.expander(f"Questão {i}", expanded=True):
-                            st.write(q)
-                    
-                    # 4. Preparação do download
-                    docx_bytes = gerar_docx_lote(questoes, descritor, escolha)
-                    st.download_button(
-                        label="📥 Baixar Simulado em Word",
-                        data=docx_bytes,
-                        file_name=f"LADOS_{descritor}.docx",
-                        mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                    )
-            except Exception as e:
-                st.error(f"Ocorreu um erro na geração: {e}")
+    with st.spinner("O Gemini está analisando os padrões e gerando os itens..."):
+        try:
+            # Limpeza dos exemplos
+            if isinstance(exemplos, list):
+                lista_limpa = [str(ex) for ex in exemplos if ex]
+            else:
+                lista_limpa = []
+
+            # Criar modelo
+            model = genai.GenerativeModel("gemini-1.5-flash")
+
+            # Prompt correto
+            prompt = montar_prompt(
+                ano=escolha,
+                disciplina="",
+                descritor=descritor,
+                habilidade=habilidade,
+                exemplos=lista_limpa
+            )
+
+            # Gerar questões
+            questoes = gerar_questoes_lote(model, prompt, quantidade)
+
+            if questoes:
+                st.success(f"{len(questoes)} questões geradas com sucesso!")
+
+                for i, q in enumerate(questoes, 1):
+                    with st.expander(f"Questão {i}", expanded=True):
+                        st.write(q)
+
+                # DOCX correto
+                docx_bytes = gerar_docx(questoes)
+
+                st.download_button(
+                    label="📥 Baixar Simulado em Word",
+                    data=docx_bytes,
+                    file_name=f"LADOS_{descritor}.docx",
+                    mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                )
+            else:
+                st.warning("Nenhuma questão válida foi gerada. Tente novamente.")
+
+        except Exception as e:
+            st.error(f"Ocorreu um erro na geração: {e}")
