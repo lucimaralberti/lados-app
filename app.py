@@ -137,7 +137,7 @@ quantidade = st.slider("Quantidade de questões", 1, 10, 5)
 
 if st.button("🚀 Gerar Questões"):
     with st.spinner("Gerando questões..."):
-        model = genai.GenerativeModel("gemini-1.5-flash")
+       model = genai.GenerativeModel('gemini-1.5-flash')
 
         prompt = montar_prompt(
             ano=escolha,
