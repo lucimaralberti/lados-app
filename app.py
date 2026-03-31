@@ -138,13 +138,17 @@ quantidade = st.slider("Quantidade de questões", 1, 10, 5)
 if st.button("🚀 Gerar Questões"):
         with st.spinner("O Gemini está analisando os padrões e gerando os itens..."):
             try:
-                # 1. Garante que 'exemplos' seja uma lista para não dar erro de 'join'
-                lista_viva_exemplos = exemplos if isinstance(exemplos, list) else []
+                # 1. Tratamento rigoroso da lista de exemplos para evitar o erro 'join'
+                if isinstance(exemplos, list):
+                    # Garante que todos os itens da lista sejam strings
+                    lista_limpa = [str(ex) for ex in exemplos if ex]
+                else:
+                    lista_limpa = []
                 
-                # 2. Monta o prompt com todos os ingredientes certos
-                prompt = montar_prompt(escolha, descritor, habilidade, lista_viva_exemplos, quantidade)
+                # 2. Montagem do prompt com os nomes de variáveis do seu código
+                prompt = montar_prompt(escolha, descritor, habilidade, lista_limpa, quantidade)
                 
-                # 3. Gera as questões
+                # 3. Chamada do modelo
                 questoes = gerar_questoes_lote(model, prompt, quantidade)
                 
                 if questoes:
@@ -153,7 +157,7 @@ if st.button("🚀 Gerar Questões"):
                         with st.expander(f"Questão {i}", expanded=True):
                             st.write(q)
                     
-                    # 4. Prepara o arquivo para baixar
+                    # 4. Preparação do download
                     docx_bytes = gerar_docx_lote(questoes, descritor, escolha)
                     st.download_button(
                         label="📥 Baixar Simulado em Word",
